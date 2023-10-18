@@ -14,8 +14,38 @@ body{
 
 #nav{
     background-color: #ffcc00;
+   
 }
 
 #logo{
     height: 50px;
+    margin-left: 15%;
+}
+
+.name{
+    width: 100px;
+    margin-right: 60%;
+    height: 10px;
+}
+
+
+
+.list-group-item{
+    display: flex !important;
+    flex-direction: row;
+    
+}
+
+.box-cat{
+    border: 2px solid #ffcc00;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    padding:5px;
+    width: fit-content;
+    height: fit-content;
+}
+
+.list-group{
+    margin: 10px;
 }
