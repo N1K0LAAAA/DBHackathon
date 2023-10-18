@@ -55,3 +55,15 @@ body{
 #logo{
     height: 50px;
 }
+
+#Buckets{
+    margin-right: 65vw;
+}
+
+#Vorname{
+    color: rgb(6, 6, 80);
+}
+#kontostand{
+    margin-left:4% ;
+    margin-right: 4%;
+}

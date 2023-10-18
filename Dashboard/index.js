@@ -1,18 +1,20 @@
 var x =0 ;
 let a = ["Lebensmittel", "Einkäufe", "Transport", "Versicherungen", "Freizeit", "Urlaub"];
-
+let b = ["Chips", "PC", "Ticket", "Krankenkasse", "Kiten", "Italien-Reise"]
 
 function append(){
-  for (let i = 0; i < 12; i++) {
+  for (let i = 0; i < 11; i++) {
     
     
   
     x = x+1
-    g = a[Math.floor(Math.random()*6)];
+    f = Math.floor(Math.random()*6);
+    g = a[f];
+    z = b[f];
     var jsonObject = {
       className: "list-group-item",
       eId:`${x}list-group-item`,
-      p:"ITEM",
+      p:`${z}`,
       pId:`${x}name`,
       dId:`${x}box-cat`,
       cId:`${x}categories`,
