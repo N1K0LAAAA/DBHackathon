@@ -1,0 +1,18 @@
+body{
+    align-items: center;
+}
+
+#cards{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 90vh;
+    align-self: center;
+    margin-left: 5%;
+}
+
+.card{
+    margin: 10px;
+    width: 30%;
+    height: 300px;
+}
