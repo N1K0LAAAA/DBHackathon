@@ -13,6 +13,7 @@ const dbQueries = {
     WHERE from_Account IN (SELECT account_id FROM Account WHERE user_id = ?)
        OR to_Account IN (SELECT account_id FROM Account WHERE user_id = ?);
   `),
+
 };
 
 api.all("/login", (req, res) => {
@@ -45,21 +46,26 @@ api.all("/user-data/:userId", (req, res) => {
   if (!user) {
     // User not found
     res.status(404).json({ message: "User not found" });
+    return;
+  }
+
+  // Retrieve user account data from the database
+  const userData = dbQueries.getUserData.all(user.user_id); // Use .all() to retrieve multiple rows
+
+  // Retrieve transaction history for the user
+  const transactionHistory = dbQueries.getTransactionHistory.all(user.user_id, user.user_id);
+
+  // Retrieve bucket data for the user
+  const bucketData = db.prepare("SELECT * FROM buckets WHERE user_id = ?").all(user.user_id);
+
+  if (userData.length > 0) {
+    // Send user data, transaction history, and bucket data as a response
+    res.json({ user: userData, transactions: transactionHistory, buckets: bucketData });
   } else {
-    // Retrieve user account data from the database
-    const userData = dbQueries.getUserData.all(user.user_id); // Use .all() to retrieve multiple rows
-
-    // Retrieve transaction history for the user
-    const transactionHistory = dbQueries.getTransactionHistory.all(user.user_id, user.user_id);
-
-    if (userData.length > 0) {
-      // Send user data and transaction history as a response
-      res.json({ user: userData, transactions: transactionHistory });
-    } else {
-      // User data not found
-      res.status(404).json({ message: "User data not found" });
-    }
+    // User data not found
+    res.status(404).json({ message: "User data not found" });
   }
 });
+
 
 module.exports = api;
