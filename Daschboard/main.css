@@ -1,0 +1,13 @@
+body{
+    height: 100%;
+}
+
+#main{
+    height: auto;
+    display: flex;
+}
+
+#Transactionen{
+    width: 60%;
+    
+}
