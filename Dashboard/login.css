@@ -1,3 +1,19 @@
 #nav{
-    background-color: rgb(254, 226, 13);
+    background-color: #ffcc00;
+}
+
+#form{
+    margin: 100px;
+    border: 5px solid #ffcc00;
+    border-radius: 15px;
+    padding: 15px;
+   
+}
+
+img{
+    size: 10%;
+}
+
+#logo{
+    height: 50px;
 }

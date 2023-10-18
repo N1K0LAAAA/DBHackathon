@@ -11,3 +11,11 @@ body{
     width: 60%;
     
 }
+
+#nav{
+    background-color: #ffcc00;
+}
+
+#logo{
+    height: 50px;
+}

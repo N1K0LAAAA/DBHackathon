@@ -49,5 +49,9 @@ body{
 }
 
 #nav{
-    background-color: rgb(254, 226, 13);
+    background-color: #ffcc00;
+}
+
+#logo{
+    height: 50px;
 }
