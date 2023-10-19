@@ -36,4 +36,6 @@ function load(){
     document.getElementById("Versicherungen").innerHTML = (elementProto.kS*elementProto.pV).toFixed(2)+`€`;
     document.getElementById("Freizeit").innerHTML = (elementProto.kS*elementProto.pF).toFixed(2)+`€`;
     document.getElementById("Urlaub").innerHTML = (elementProto.kS*elementProto.pU).toFixed(2)+`€`;
+
+    
 }
