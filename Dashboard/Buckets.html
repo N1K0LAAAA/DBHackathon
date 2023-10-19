@@ -3,13 +3,13 @@
 <head>
     <link rel="stylesheet" href="buckets.css">
     <meta charset="utf-8">
-    <script src="buckets.js"></script>
+    <script type="module" src="buckets.js" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  
+    <script src="logout.js"></script>
 </head>
-<body onload="load()">
+<body>
     <nav class="navbar navbar-expand-lg navbar-light" id="nav">
         <div class="container-fluid">
           <a class="navbar-brand" href="index.html"><img id="logo" src="assets/postbank (1).webp"></a>
@@ -22,10 +22,10 @@
                 <a class="nav-link" href="index.html">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="login.html">login</a>
-              </li>
-              <li class="nav-item" id="Buckets">
                 <a class="nav-link" href="#" >Buckets</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" onclick="logout()" id="logout">Logout</a>
               </li>
                 <li id="deinName">
                   
@@ -41,8 +41,8 @@
         <div class="card-header">
             Dein derzeitiger Kontostand:
         </div>
-        <div class="card-body">
-            <H1 id="kontoEuro"></H1>
+        <div class="card-body" id="cardK">
+            <h1 id="kontoEuro" class="kontoEuro"></h1><h1 class="kontoEuro">€</h1>
       </div>
     </div>
       </div>
@@ -51,54 +51,78 @@
             <div class="card-body">
               <h5 class="card-title">Lebensmittel</h5>
               <h6 class="vB">Verfügbares Budget:</h6>
-              <h3 class="budget" id="Lebensmittel">
-              
-              </h3>
+              <div class="budgetCon">
+
+                <h3 class="budget" id="Lebensmittel">
+                
+                </h3>
+                <h3 class="budget">€</h3>
+              </div>
                </div>
           </div>
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Einkäufe</h5>
               <h6 class="vB">Verfügbares Budget:</h6>
-              <h3 class="budget" id="Einkäufe">
-               
-              </h3>
+              <div class="budgetCon">
+
+                <h3 class="budget" id="Einkäufe">
+                
+                </h3>
+                <h3 class="budget">€</h3>
+              </div>
             </div>
           </div>
           <div class="card" >
             <div class="card-body">
               <h5 class="card-title">Transport</h5>
               <h6 class="vB">Verfügbares Budget:</h6>
-              <h3 class="budget" id="Transport">
+              <div class="budgetCon">
+
+                <h3 class="budget" id="Transport">
                 
-              </h3>
+                </h3>
+                <h3 class="budget">€</h3>
+              </div>
             </div>
           </div>
           <div class="card" >
             <div class="card-body">
               <h5 class="card-title">Versicherungen</h5>
               <h6 class="vB">Verfügbares Budget:</h6>
-              <h3 class="budget" id="Versicherungen">
-              
-              </h3>
+              <div class="budgetCon">
+
+                <h3 class="budget" id="Versicherungen">
+                
+                </h3>
+                <h3 class="budget">€</h3>
+              </div>
             </div>
           </div>
           <div class="card" >
             <div class="card-body">
               <h5 class="card-title">Freizeit</h5>
               <h6 class="vB">Verfügbares Budget:</h6>
-              <h3 class="budget" id="Freizeit">
-               
-              </h3>
+              <div class="budgetCon">
+
+                <h3 class="budget" id="Freizeit">
+                
+                </h3>
+                <h3 class="budget">€</h3>
+              </div>
             </div>
           </div>
           <div class="card" >
             <div class="card-body">
               <h5 class="card-title">Urlaub</h5>
               <h6 class="vB">Verfügbares Budget:</h6>
-              <h3 class="budget" id="Urlaub">
-               
-              </h3>
+              <div class="budgetCon">
+
+                <h3 class="budget" id="Urlaub">
+                
+                </h3>
+                <h3 class="budget">€</h3>
+              </div>
             </div>
           </div>
       </div>

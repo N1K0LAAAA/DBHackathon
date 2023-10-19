@@ -1,39 +1,48 @@
-
-
+import { CountUp } from './countUp.js';
+ const userId =1;
 
 function load(){
-   kS = (Math.random(1000)*10000).toFixed(2);
-
 
    
-   var jsonObject = {
-    name: "Kai",
-    id:"Vorname",
-    kS:`${kS}`,
-    pL:0.125,
-    pE:0.225,
-    pT:0.9,
-    pV:0.16,
-    pF:0.23,
-    pU:0.13
-   }
+   fetch("http://alessio.ddnss.de/api/user-data/1").then(response => {
+    response.json().then(data =>{
+        const key = Object.keys(data).find(user => data[user].user_id === '1');
+
    
-   var jsonString = JSON.stringify(jsonObject); // this is json for your div. 
-    /// for append div and get div object back from js
-    var elementProto = JSON.parse(jsonString);
     
     var element = document.createElement("h3");
-    element.innerHTML = "Hallo "+elementProto.name+ "!";
-    element.id = elementProto.id;
+    element.innerHTML = "Hallo "+data[key].first_name+ "!";
+    element.id = data[key].user_id;
     
     // append to container (in your case its page 1 or 2
     document.getElementById("deinName").append(element);
 
-    document.getElementById("kontoEuro").innerHTML = elementProto.kS+"€";
-    document.getElementById("Lebensmittel").innerText = (elementProto.kS*elementProto.pL).toFixed(2)+`€`;
-    document.getElementById("Transport").innerText = (elementProto.kS*elementProto.pT).toFixed(2)+`€`;
-    document.getElementById("Einkäufe").innerHTML = (elementProto.kS*elementProto.pE).toFixed(2)+`€`;
-    document.getElementById("Versicherungen").innerHTML = (elementProto.kS*elementProto.pV).toFixed(2)+`€`;
-    document.getElementById("Freizeit").innerHTML = (elementProto.kS*elementProto.pF).toFixed(2)+`€`;
-    document.getElementById("Urlaub").innerHTML = (elementProto.kS*elementProto.pU).toFixed(2)+`€`;
+    let contentKontoEuro = data.buckets.find(x => x.user_id === userId).food+data.buckets.find(x => x.user_id === 1).transport+data.buckets.find(x => x.user_id === 1).living_expense+data.buckets.find(x => x.user_id === 1).insurance+data.buckets.find(x => x.user_id === 1).entertainment+data.buckets.find(x => x.user_id === 1).urlaub;
+    let Lebensmittel= data.buckets.find(x => x.user_id === userId).food;
+    let Transport = data.buckets.find(x => x.user_id === userId).transport;
+    let Einkäufe = data.buckets.find(x => x.user_id === userId).living_expense;
+    let Versicherungen = data.buckets.find(x => x.user_id === userId).insurance;
+    let Freizeit = data.buckets.find(x => x.user_id === userId).entertainment;
+    let Urlaub = data.buckets.find(x => x.user_id === userId).urlaub;
+    
+    var countUp = new CountUp('kontoEuro', contentKontoEuro);
+    countUp.start();
+    var countUp = new CountUp('Lebensmittel', Lebensmittel);
+    countUp.start();
+    var countUp = new CountUp('Transport', Transport);
+    countUp.start();
+    var countUp = new CountUp('Versicherungen', Versicherungen);
+    countUp.start();
+    var countUp = new CountUp('Einkäufe', Einkäufe);
+    countUp.start();
+    var countUp = new CountUp('Freizeit', Freizeit);
+    countUp.start();
+    var countUp = new CountUp('Urlaub', Urlaub);
+    countUp.start();
+
+
+
+        })  
+    });
 }
+load()

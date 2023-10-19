@@ -17,17 +17,20 @@ const dbQueries = {
   getBucketData: db.prepare("SELECT * FROM buckets WHERE user_id = ?")
 };
 
+<<<<<<< HEAD
 api.all("/login", cors(), (req, res) => {
+=======
+api.post("/login", (req, res) => {
+>>>>>>> b3b38bf351fe92ea5ae61700b9894438da71de22
   const { email, password } = req.query;
 
   // Check if the user exists in the database
   const user = dbQueries.findUserByEmail.get(email);
 
   if (!user) {
-    // User not found
-    res.status(401).json({ message: "User not found" });
+    res.status(401);
   } else {
-    // Check the provided password against the stored password 
+    // Check the provided password against the stored password
     if (user.password === password) {
       // Passwords match, user is authenticated
       res.json({ message: "Login successful", user_id: user.user_id });
@@ -60,13 +63,23 @@ api.get("/user-data/:userId", cors(), (req, res) => {
   const bucketData = dbQueries.getBucketData.all(user.user_id);
 
   if (userData.length > 0) {
-    // Send user data, transaction history, and bucket data as a response
-    res.json({ user: userData, transactions: transactionHistory, buckets: bucketData });
+    const userWithNames = {
+      user_id: user.user_id,
+      first_name: user.first_name, 
+      last_name: user.last_name,
+      account_data: userData,
+      transactions: transactionHistory,
+      buckets: bucketData
+    };
+
+    // Send the response with the user's data
+    res.json(userWithNames);
   } else {
     // User data not found
     res.status(404).json({ message: "User data not found" });
   }
 });
+
 
 
 module.exports = api;
