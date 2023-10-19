@@ -16,7 +16,7 @@ const dbQueries = {
 
 };
 
-api.post("/login", (req, res) => {
+api.all("/login", (req, res) => {
   const { email, password } = req.query;
 
   // Check if the user exists in the database
@@ -29,7 +29,7 @@ api.post("/login", (req, res) => {
     // Check the provided password against the stored password 
     if (user.password === password) {
       // Passwords match, user is authenticated
-      res.json({ message: "Login successful" });
+      res.json({ message: "Login successful", user_id: user.user_id });
     } else {
       // Passwords do not match
       res.status(401).json({ message: "Incorrect password" });
