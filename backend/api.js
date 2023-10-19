@@ -24,7 +24,7 @@ api.all("/login", cors(), (req, res) => {
   const user = dbQueries.findUserByEmail.get(email);
 
   if (!user) {
-    res.status(401);
+    res.status(401).end();
   } else {
     // Check the provided password against the stored password
     if (user.password === password) {
