@@ -3,7 +3,7 @@ body{
 }
 
 #main{
-    height: auto;
+    height: min-content;
     display: flex;
 }
 
@@ -24,8 +24,11 @@ body{
 
 .name{
     width: 100px;
-    margin-right: 60%;
+    margin-right: 45%;
+    margin-bottom: 0;
     height: 10px;
+    display: flex;
+    align-items: center;
 }
 
 
@@ -33,6 +36,7 @@ body{
 .list-group-item{
     display: flex !important;
     flex-direction: row;
+    align-items: center;
     
 }
 
@@ -52,4 +56,45 @@ body{
 
 #logout{
     margin-right: 65vw;
+}
+
+.negativ{
+    color:red;
+    font-weight: bold;
+    margin: 0;
+    margin-right: 15%;
+    display: flex;
+    align-items: center;
+}
+
+.positiv{
+    color:green;
+    font-weight: bold;
+    margin: 0;
+    margin-right: 15%;
+    display: flex;
+    align-items: center;
+}
+
+#side{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+#cM{
+    margin: 0;
+}
+
+#lW{
+    font-size: 80px;
+    margin-left: 25%;
+    font-weight: bold;
+}
+
+
+
+#se{
+    display: flex;
+    flex-direction: row;
 }
