@@ -1,45 +1,37 @@
 import { CountUp } from "./node_modules/countup.js/dist/countUp.js";
 
-let userdata = {};
-document.addEventListener("DOMContentLoaded", () => {
-    function login() {
-        let email = document.getElementById("inputEmail").value;
-        let password = document.getElementById("inputPassword").value;
-
-        setPage("preloader");
-        chrome.runtime.sendMessage({ action: "runAuth", credits: { mail: email, pwd: password } });
-    }
-
-    document.getElementById("button-login").addEventListener("click", login);
-
-    chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
-        if (message.from === "background.js") {
-            if (message.action === "loginComplete") {
-                if (message.data.user_id) {
-                    chrome.storage.local.set({ "userID": message.data.user_id });
-                    chrome.runtime.sendMessage({ action: "getUserData", userID: message.data.user_id });
-                } else {
-                    let err_label = document.getElementById("login-error-label");
-                    err_label.hidden = false;
-                    err_label.innerText = message.data.message;
-                    setPage("login");
-                }
-            } else if (message.action === 'userData') {
-                userdata = message.data;
-                chrome.runtime.sendMessage({ action: "executeCode" });
-            } else if (message.action === 'pageData') {
-                initContentPage(message.data.title, message.data.price, userdata);
-            }
-        }
+async function makeCORSRequest(url, method) {
+    return new Promise((resolve) => {
+        chrome.runtime.sendMessage({ action: "makeCORSRequest", url, method }, (response) => {
+            resolve(response);
+        });
     });
+}
 
-    chrome.storage.local.get(["userID"]).then((result) => {
-        if (result.userID) {
-            chrome.runtime.sendMessage({ action: "getUserData", userID: result.userID });
+function login() {
+    let email = document.getElementById("inputEmail").value;
+    let password = document.getElementById("inputPassword").value;
+
+    setPage("preloader");
+    makeCORSRequest(`https://alessio.ddnss.de/api/login?email=${email}&password=${password}`, "POST").then(d => {
+        if (d.success) {
+            let data = JSON.parse(d.data);
         } else {
-            setPage("login");
+            alert("failed!")
         }
-    });
+    })
+}
+
+document.getElementById("button-login").addEventListener("click", login);
+
+
+chrome.storage.local.get(["userID"]).then((result) => {
+    if (result.userID) {
+        console.log(result.userID);
+        chrome.runtime.sendMessage({ action: "getUserData", userID: `${result.userID}` });
+    } else {
+        setPage("login");
+    }
 });
 
 let pages = {

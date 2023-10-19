@@ -1,21 +1,22 @@
-// background.js
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.action === "makeCORSRequest") {
+        (async () => {
+            try {
+                const response = await fetch(request.url, {
+                    method: request.method,
+                });
 
-chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
-    if (message.action === "runAuth") {
-        const { mail, pwd } = message.credits;
-        fetch(`http://alessio.ddnss.de/api/login?email=${mail}&password=${pwd}`, {
-            method: "GET"
-        })
-            .then(response => response.json())
-            .then(data => {
-                chrome.runtime.sendMessage({ from: "background.js", action: "loginComplete", data });
-            });
-    } else if (message.action === "getUserData") {
-        const { userID } = message;
-        fetch(`http://alessio.ddnss.de/api/user-data/${userID}`, { method: "GET" })
-            .then(response => response.json())
-            .then(data => {
-                chrome.runtime.sendMessage({ from: "background.js", action: "userData", data });
-            });
+                if (!response.ok) {
+                    throw new Error(`Request failed with status ${response.status}`);
+                }
+
+                const data = await response.text();
+                sendResponse({ success: true, data });
+            } catch (error) {
+                sendResponse({ success: false, error: error.message });
+            }
+        })();
+
+        return true;
     }
 });
