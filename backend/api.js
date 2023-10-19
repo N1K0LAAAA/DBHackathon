@@ -25,6 +25,7 @@ api.all("/login", (req, res) => {
   if (!user) {
     // User not found
     res.status(401).json({ message: "User not found" });
+    window.location.href = "index.html";
   } else {
     // Check the provided password against the stored password 
     if (user.password === password) {
