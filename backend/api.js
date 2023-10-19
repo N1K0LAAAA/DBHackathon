@@ -16,7 +16,7 @@ const dbQueries = {
 
 };
 
-api.all("/login", (req, res) => {
+api.post("/login", (req, res) => {
   const { email, password } = req.query;
 
   // Check if the user exists in the database
@@ -37,7 +37,7 @@ api.all("/login", (req, res) => {
   }
 });
 
-api.all("/user-data/:userId", (req, res) => {
+api.get("/user-data/:userId", (req, res) => {
   const userId = req.params.userId;
 
   // Check if the user exists in the database
