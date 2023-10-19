@@ -63,4 +63,15 @@ function append(){
     document.getElementById(`${x}box-cat`).append(element);
 
     }
+    fetch("http://alessio.ddnss.de/api/user-data/1").then(response => {
+    response.json().then(data =>{
+    var element = document.createElement("h3");
+    element.innerHTML = "Hallo "+data.first_name+ "!";
+    element.id = data.user_id;
+    
+    // append to container (in your case its page 1 or 2
+    document.getElementById("deinName").append(element);
+
+      })  
+    });
   }

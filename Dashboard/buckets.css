@@ -44,7 +44,7 @@ body{
     font-size: 50px;
 }
 
-#kontoEuro{
+.kontoEuro{
     font-size: 70px;
 }
 
@@ -56,7 +56,7 @@ body{
     height: 50px;
 }
 
-#Buckets{
+#logout{
     margin-right: 65vw;
 }
 
@@ -66,4 +66,16 @@ body{
 #kontostand{
     margin-left:4% ;
     margin-right: 4%;
+}
+
+#cardK{
+    display: flex;
+   
+    flex-direction: row;
+}
+
+.budgetCon{
+    display: flex;
+   
+    flex-direction: row;
 }

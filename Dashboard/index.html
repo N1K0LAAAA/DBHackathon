@@ -9,6 +9,7 @@
     <script src="index.js"></script>
     <script src="https://cdn.syncfusion.com/ej2/dist/ej2.min.js" type="text/javascript"></script>
     <script src="buckets.js"></script>
+    <script src="logout.js"></script>
   </head>
   <body onload="append()">
     <nav class="navbar navbar-expand-lg navbar-light" id="nav">
@@ -22,12 +23,14 @@
                 <a class="nav-link" href="#">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="login.html">login</a>
-              </li>
-              <li class="nav-item">
                 <a class="nav-link" href="Buckets.html">Buckets</a>
               </li>
-              
+              <li class="nav-item">
+                <a class="nav-link" onclick="logout()" id="logout">Logout</a>
+              </li>
+              <li id="deinName">
+                  
+              </li>
             </ul>
           </div>
         </div>
@@ -52,21 +55,22 @@
               //Initializing Series
               series: [
                   {
+                    pointColorMapping: "color",
                       dataSource: [
-                          { 'x': 'Entertainment', y: data.buckets.find(x => x.user_id === 1).entertainment}, 
-                          { 'x': 'Food', y: data.buckets.find(x => x.user_id === 1).food },
-                          { 'x': 'Insurance', y: data.buckets.find(x => x.user_id === 1).insurance },
-                          { 'x': 'Living Expenses', y: data.buckets.find(x => x.user_id === 1).living_expense }, 
-                          
+                          { 'x': 'Entertainment', y: data.buckets.find(x => x.user_id === 1).entertainment,color:"#cd001a"}, 
+                          { 'x': 'Food', y: data.buckets.find(x => x.user_id === 1).food,color:"#ef6a00" },
+                          { 'x': 'Insurance', y: data.buckets.find(x => x.user_id === 1).insurance,color:"#ffb703" },
+                          { 'x': 'Living Expenses', y: data.buckets.find(x => x.user_id === 1).living_expense,color:"#79c300" }, 
+                          { 'x': 'Transport', y: data.buckets.find(x => x.user_id === 1).transport,color:"#96b8db"},
+                          { 'x': 'Urlaub', y: data.buckets.find(x => x.user_id === 1).urlaub,color:"rgb(6, 6, 80)"},
                       ],  
-                      dataLabel: {
-                          visible: false,
-                          position: 'Inside',
-                      },
+                      
+                      
                       xName: 'x',
                       yName: 'y'
                   }
               ],
+              tooltip: { enable: true, format: '${point.x}:<b> ${point.y}€<b>' },
           });
           pie.appendTo('#container');
         })

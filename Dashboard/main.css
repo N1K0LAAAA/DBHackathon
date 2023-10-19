@@ -49,3 +49,7 @@ body{
 .list-group{
     margin: 10px;
 }
+
+#logout{
+    margin-right: 65vw;
+}
