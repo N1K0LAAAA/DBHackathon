@@ -13,7 +13,7 @@
             <div class="card-body">
                 <h3>Hallo <b id="username">Username</b></h3>
                 <div>
-                    Dein Kontostand: <div class="d-inline blue_number" id="number-kontostant">137,423.12€</div>
+                    Dein Kontostand: <div class="d-inline blue_number" id="number-kontostant">137,423.12</div><div class="d-inline blue_number">€</div>
                 </div>
             </div>
         </div>
@@ -22,11 +22,11 @@
                 <h6 class="card-title" id="article-item-name">Amazon Fire TV stick</h6>
                 <div class="row">
                     <div class="col-4">
-                        <div class="red_number" id="item-number">89€</div>
+                        <div class="red_number d-inline" id="item-price">0</div><div class="red_number d-inline">€</div>
                     </div>
                     <div class="col-8">
                         <select id="category-select" class="form-select">
-                            <option>"load dynamic"</option>
+
                         </select>
                     </div>
                 </div>
@@ -49,11 +49,11 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td id="bucket-budget" class="blue_number">
-                                32€
+                            <td>
+                                <div id="bucket-budget" class="blue_number d-inline">0</div><div class="blue_number d-inline">€</div>
                             </td>
-                            <td id="bucket-">
-
+                            <td>
+                                <div id="bucket-percentage" class="percentage_number d-inline">e</div><div class="percentage_number d-inline">%</div>
                             </td>
                         </tr>
                         </tbody>
@@ -90,6 +90,7 @@
             </div>
         </div>
     </div>
+    <div id="overlay-menu" class="position-absolute top-0 end-0 mt-3 m-4">⋮</div>
 </div>
 <script type="module" src="popup.js"></script>
 </body>

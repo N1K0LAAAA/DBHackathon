@@ -1,4 +1,4 @@
-import { CountUp } from "./node_modules/countup.js/dist/countUp.js";
+import { CountUp } from "./countUp.js";
 
 async function makeCORSRequest(url, method) {
     return new Promise((resolve) => {
@@ -6,6 +6,36 @@ async function makeCORSRequest(url, method) {
             resolve(response);
         });
     });
+}
+
+async function getItemData() {
+    return new Promise((resolve) => {
+        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+            chrome.scripting.executeScript({
+                target: { tabId: tabs[0].id },
+                function: () => {
+                    const priceElement = document.querySelector(".a-price.aok-align-center.reinventPricePriceToPayMargin.priceToPay");
+                    const titleElement = document.querySelector("#productTitle");
+                    return {
+                        success: true,
+                        price: priceElement ? priceElement.innerText.split("\n")[0] : "N/A",
+                        title: titleElement ? titleElement.innerText : "N/A"
+                    };
+                }
+            }, (result) => {
+                if (chrome.runtime.lastError) {
+                    resolve({ success: false, error: chrome.runtime.lastError.message });
+                } else {
+                    resolve(result[0]);
+                }
+            });
+        });
+    });
+}
+
+async function getUserData(id) {
+    setPage("preloader");
+    return JSON.parse((await makeCORSRequest(`https://alessio.ddnss.de/api/user-data/${id}`, "GET")).data);
 }
 
 function login() {
@@ -16,19 +46,27 @@ function login() {
     makeCORSRequest(`https://alessio.ddnss.de/api/login?email=${email}&password=${password}`, "POST").then(d => {
         if (d.success) {
             let data = JSON.parse(d.data);
+            chrome.storage.local.set({"userID": data.user_id});
+            initContentPage(data.user_id);
         } else {
             alert("failed!")
         }
     })
 }
 
-document.getElementById("button-login").addEventListener("click", login);
+function truncateString(str, num) {
+    if (str.length <= num) {
+        return str
+    }
+    return str.slice(0, num) + '...'
+}
+
 
 
 chrome.storage.local.get(["userID"]).then((result) => {
     if (result.userID) {
         console.log(result.userID);
-        chrome.runtime.sendMessage({ action: "getUserData", userID: `${result.userID}` });
+        initContentPage(result.userID);
     } else {
         setPage("login");
     }
@@ -56,7 +94,52 @@ function setPage(page) {
     }
 }
 
-function initContentPage(articleTitle, articlePrice, userData) {
+async function initContentPage(id) {
+    let itemData = (await getItemData()).result;
+    let userData = await getUserData(id);
     setPage("content");
-    alert(JSON.stringify(userData));
+
+    document.getElementById("username").innerText = userData.first_name;
+
+    (new CountUp("number-kontostant", userData.account_data[0].balance)).start();
+
+    document.getElementById("article-item-name").innerText = truncateString(itemData.title, 40)
+
+    itemData.price = Number((itemData.price).replace(/[^0-9.-]+/g,""))/100;
+    (new CountUp("item-price", itemData.price)).start();
+
+    initBucketUI(userData.buckets[0], itemData.price);
+
+    console.log(userData);
 }
+
+function initBucketUI(buckets, itemPrice) {
+    let select = document.getElementById("category-select");
+
+    let keys = Object.keys(buckets);
+    delete keys[keys.indexOf("bucket_id")];
+    delete keys[keys.indexOf("user_id")];
+    keys.forEach(key => {
+        let option = document.createElement("option");
+        option.value = buckets[key];
+        option.innerHTML = key;
+
+        select.appendChild(option)
+    });
+
+    select.onchange = () => {
+        let budget = Number(select.value);
+        let bucket = select.options[select.selectedIndex].text;
+
+        document.getElementById("label-budget-selected").innerText = bucket;
+
+        (new CountUp("bucket-budget", budget)).start();
+
+        let percentage = Math.round(itemPrice / budget * 100);
+
+        (new CountUp("bucket-percentage", percentage)).start();
+    }
+    select.onchange();
+}
+
+document.getElementById("button-login").addEventListener("click", login);

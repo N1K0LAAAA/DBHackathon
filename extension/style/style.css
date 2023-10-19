@@ -1,7 +1,7 @@
 body {
     width: 400px;
     height: fit-content;
-    border: solid #ffcc00;
+    border: 8px solid #ffcc00;
     overflow: hidden;
     display: block;
     box-sizing: border-box;
@@ -19,3 +19,12 @@ body {
     font-weight: bold;
 }
 
+.percentage_number {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.position-absolute.top-0.end-0.mt-3.m-4 {
+    font-size: 30px;
+    cursor: pointer;
+}
