@@ -59,7 +59,6 @@ api.get("/user-data/:userId", (req, res) => {
   const bucketData = dbQueries.getBucketData.all(user.user_id);
 
   if (userData.length > 0) {
-    // Include first name and last name in the user data
     const userWithNames = {
       user_id: user.user_id,
       first_name: user.first_name, 
