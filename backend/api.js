@@ -17,11 +17,7 @@ const dbQueries = {
   getBucketData: db.prepare("SELECT * FROM buckets WHERE user_id = ?")
 };
 
-<<<<<<< HEAD
 api.all("/login", cors(), (req, res) => {
-=======
-api.post("/login", (req, res) => {
->>>>>>> b3b38bf351fe92ea5ae61700b9894438da71de22
   const { email, password } = req.query;
 
   // Check if the user exists in the database
