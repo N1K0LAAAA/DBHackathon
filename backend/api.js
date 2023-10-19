@@ -23,7 +23,6 @@ api.post("/login", (req, res) => {
   const user = dbQueries.findUserByEmail.get(email);
 
   if (!user) {
-    // User not found, send a redirect response to "index.html"
     res.status(401);
   } else {
     // Check the provided password against the stored password

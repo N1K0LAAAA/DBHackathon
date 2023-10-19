@@ -48,27 +48,35 @@
 
 
 <script>
-    async function handleLogin() {
+async function handleLogin() {
+    const email = document.getElementById("exampleInputEmail1").value;
+    const password = document.getElementById("exampleInputPassword1").value;
 
-        const email = document.getElementById("exampleInputEmail1").value;
-        const password = document.getElementById("exampleInputPassword1").value;
+    const response = await fetch(`/api/login?email=${email}&password=${password}`, {
+        method: "POST",
+    });
 
-        const response = await fetch(`/api/login?email=${email}&password=${password}`, {
-            method: "POST",
-        });
+    if (response.status === 200) {
+        // Successful login, extract the user ID from the JSON response
+        const userData = await response.json();
+        const userId = userData.user_id;
 
-        if (response.status === 200) {
-            // Successful login, redirect to index.html
-            window.location.href = "index.html";
-        } else if (response.status === 401) {
-            // Incorrect password or email, show an alert
-            alert("Incorrect email or password. Please try again.");
-        } else {
-            // Handle other response statuses as needed
-            alert("An error occurred. Please try again later.");
-        }
+        // Set a cookie with the user ID and the "SameSite" attribute set to "None"
+        document.cookie = `user_id=${userId}; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/; SameSite=None; Secure`;
+
+        // Redirect to index.html
+        window.location.href = "index.html";
+    } else if (response.status === 401) {
+        // Incorrect password or email, show an alert
+        alert("Incorrect email or password. Please try again.");
+    } else {
+        // Handle other response statuses as needed
+        alert("An error occurred. Please try again later.");
     }
-    document.getElementById("login-button").addEventListener("click", handleLogin);
+}
+
+document.getElementById("login-button").addEventListener("click", handleLogin);
+
 
 </script>
 </body>
