@@ -13,7 +13,7 @@ const dbQueries = {
     WHERE from_Account IN (SELECT account_id FROM Account WHERE user_id = ?)
        OR to_Account IN (SELECT account_id FROM Account WHERE user_id = ?);
   `),
-
+  getBucketData: db.prepare("SELECT * FROM buckets WHERE user_id = ?")
 };
 
 api.all("/login", (req, res) => {
@@ -57,7 +57,7 @@ api.get("/user-data/:userId", (req, res) => {
   const transactionHistory = dbQueries.getTransactionHistory.all(user.user_id, user.user_id);
 
   // Retrieve bucket data for the user
-  const bucketData = db.prepare("SELECT * FROM buckets WHERE user_id = ?").all(user.user_id);
+  const bucketData = dbQueries.getBucketData.all(user.user_id);
 
   if (userData.length > 0) {
     // Send user data, transaction history, and bucket data as a response
