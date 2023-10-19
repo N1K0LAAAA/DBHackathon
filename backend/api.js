@@ -1,5 +1,6 @@
 const express = require("express");
 const betterSQLite3 = require("better-sqlite3");
+const cors = require("cors");
 
 const api = express.Router();
 const db = betterSQLite3(__dirname + "/databaseHAc.db", { "fileMustExist": true, "verbose": console.log });
@@ -16,7 +17,7 @@ const dbQueries = {
   getBucketData: db.prepare("SELECT * FROM buckets WHERE user_id = ?")
 };
 
-api.all("/login", (req, res) => {
+api.all("/login", cors(), (req, res) => {
   const { email, password } = req.query;
 
   // Check if the user exists in the database
@@ -37,7 +38,7 @@ api.all("/login", (req, res) => {
   }
 });
 
-api.get("/user-data/:userId", (req, res) => {
+api.get("/user-data/:userId", cors(), (req, res) => {
   const userId = req.params.userId;
 
   // Check if the user exists in the database

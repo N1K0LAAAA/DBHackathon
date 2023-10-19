@@ -1,0 +1,21 @@
+body {
+    width: 400px;
+    height: fit-content;
+    border: solid #ffcc00;
+    overflow: hidden;
+    display: block;
+    box-sizing: border-box;
+}
+
+.blue_number {
+    font-size: 24px;
+    color: blue !important;
+    font-weight: bold;
+}
+
+.red_number {
+    font-size: 24px;
+    color: red;
+    font-weight: bold;
+}
+
