@@ -47,18 +47,18 @@
 
       fetch("http://alessio.ddnss.de/api/user-data/1").then(response => {
         response.json().then(data =>{
-          console.log(data.buckets[0].entertainment)
+          console.log(data.buckets.find(x => x.user_id === 1).living_expense)
           var pie = new ej.charts.AccumulationChart({
               //Initializing Series
               series: [
                   {
                       dataSource: [
-                          { 'x': 'Entertainment', y: data.buckets[0].entertainment}, 
-                          { 'x': 'Food', y: data.buckets[0].food },
-                          { 'x': 'Insurance', y: data.buckets[0].insurance },
-                          { 'x': 'Living Expenses', y: data.buckets[0].living_expense }, 
+                          { 'x': 'Entertainment', y: data.buckets.find(x => x.user_id === 1).entertainment}, 
+                          { 'x': 'Food', y: data.buckets.find(x => x.user_id === 1).food },
+                          { 'x': 'Insurance', y: data.buckets.find(x => x.user_id === 1).insurance },
+                          { 'x': 'Living Expenses', y: data.buckets.find(x => x.user_id === 1).living_expense }, 
                           
-                      ],
+                      ],  
                       dataLabel: {
                           visible: false,
                           position: 'Inside',

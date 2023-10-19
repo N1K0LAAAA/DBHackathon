@@ -3,39 +3,29 @@
 
 function load(){
    kS = (Math.random(1000)*10000).toFixed(2);
-
+   fetch("http://alessio.ddnss.de/api/user-data/1").then(response => {
+    response.json().then(data =>{
 
    
-   var jsonObject = {
-    name: "Kai",
-    id:"Vorname",
-    kS:`${kS}`,
-    pL:0.125,
-    pE:0.225,
-    pT:0.9,
-    pV:0.16,
-    pF:0.23,
-    pU:0.13
-   }
    
-   var jsonString = JSON.stringify(jsonObject); // this is json for your div. 
-    /// for append div and get div object back from js
-    var elementProto = JSON.parse(jsonString);
+   
+   
     
     var element = document.createElement("h3");
-    element.innerHTML = "Hallo "+elementProto.name+ "!";
-    element.id = elementProto.id;
+    element.innerHTML = "Hallo "+"Kai"+ "!";
+    element.id = data.user.find(x => x.user_id === 1).user_id;
     
     // append to container (in your case its page 1 or 2
     document.getElementById("deinName").append(element);
 
-    document.getElementById("kontoEuro").innerHTML = elementProto.kS+"€";
-    document.getElementById("Lebensmittel").innerText = (elementProto.kS*elementProto.pL).toFixed(2)+`€`;
-    document.getElementById("Transport").innerText = (elementProto.kS*elementProto.pT).toFixed(2)+`€`;
-    document.getElementById("Einkäufe").innerHTML = (elementProto.kS*elementProto.pE).toFixed(2)+`€`;
-    document.getElementById("Versicherungen").innerHTML = (elementProto.kS*elementProto.pV).toFixed(2)+`€`;
-    document.getElementById("Freizeit").innerHTML = (elementProto.kS*elementProto.pF).toFixed(2)+`€`;
-    document.getElementById("Urlaub").innerHTML = (elementProto.kS*elementProto.pU).toFixed(2)+`€`;
+    document.getElementById("kontoEuro").innerHTML = data.buckets.find(x => x.user_id === 1).food+350+data.buckets.find(x => x.user_id === 1).living_expense+data.buckets.find(x => x.user_id === 1).insurance+data.buckets.find(x => x.user_id === 1).entertainment+400+"€";
+    document.getElementById("Lebensmittel").innerText = data.buckets.find(x => x.user_id === 1).food +`€`;
+    document.getElementById("Transport").innerText = 350+`€`;
+    document.getElementById("Einkäufe").innerHTML = data.buckets.find(x => x.user_id === 1).living_expense+`€`;
+    document.getElementById("Versicherungen").innerHTML = data.buckets.find(x => x.user_id === 1).insurance+`€`;
+    document.getElementById("Freizeit").innerHTML = data.buckets.find(x => x.user_id === 1).entertainment+"€";
+    document.getElementById("Urlaub").innerHTML = 400+`€`;
 
-    
+        })  
+    });
 }

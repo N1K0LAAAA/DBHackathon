@@ -3,7 +3,7 @@ let a = ["Lebensmittel", "Einkäufe", "Transport", "Versicherungen", "Freizeit",
 let b = ["Chips", "PC", "Ticket", "Krankenkasse", "Kiten", "Italien-Reise"]
 
 function append(){
-  for (let i = 0; i < 11; i++) {
+  for (let i = 0; i < 12; i++) {
     
     
   
