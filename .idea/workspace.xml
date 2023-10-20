@@ -5,10 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e41b6606-d500-4f31-8e4b-602eaf6c4a2e" name="Changes" comment="remove content.js">
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extension/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/extension/manifest.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/extension/popup.html" beforeDir="false" afterPath="$PROJECT_DIR$/extension/popup.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/extension/popup.js" beforeDir="false" afterPath="$PROJECT_DIR$/extension/popup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extension/style/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/extension/style/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,23 +30,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "javascript.nodejs.core.library.configured.version": "20.7.0",
-    "javascript.nodejs.core.library.typings.version": "20.7.0",
-    "last_opened_file_path": "/home/alessio/Documents/GitHub/DBHackathon/extension",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;20.7.0&quot;,
+    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;20.7.0&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/alessio/Documents/GitHub/DBHackathon/extension&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/extension" />
@@ -68,6 +69,8 @@
       <workItem from="1697732073108" duration="4497000" />
       <workItem from="1697743890327" duration="6326000" />
       <workItem from="1697784436267" duration="1718000" />
+      <workItem from="1697787327560" duration="1073000" />
+      <workItem from="1697789364446" duration="13000" />
     </task>
     <task id="LOCAL-00001" summary="Optimisation and static dir support">
       <option name="closed" value="true" />

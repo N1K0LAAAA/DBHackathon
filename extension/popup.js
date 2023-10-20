@@ -152,14 +152,14 @@ function initBucketUI(buckets, itemPrice) {
         let percentage = Math.round(itemPrice / budget * 100);
 
         if (percentage >= 40) {
-            percentageContainer.style.color = 'red';
-            percentageContainerEuro.style.color = 'red';
+            percentageContainer.style.color = '#9e0017';
+            percentageContainerEuro.style.color = '#9e0017';
         } else if (percentage >= 20) {
-            percentageContainer.style.color = 'orange';
-            percentageContainerEuro.style.color = 'orange';
+            percentageContainer.style.color = '#C2320A';
+            percentageContainerEuro.style.color = '#C2320A';
         } else {
-            percentageContainer.style.color = 'green';
-            percentageContainerEuro.style.color = 'green';
+            percentageContainer.style.color = '#006800';
+            percentageContainerEuro.style.color = '#006800';
         }
 
         (new CountUp("bucket-percentage", percentage)).start();
