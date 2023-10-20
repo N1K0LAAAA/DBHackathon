@@ -59,6 +59,8 @@ function append(){
         element.className = 'positiv';
         x = x-data.transactions[i].amount;
       }
+
+      
       // append to container (in your case its page 1 or 2)
       
       document.getElementById(`${i}list-group-item`).append(element);
@@ -89,7 +91,7 @@ function append(){
 
     }
     var element = document.createElement("h3");
-    element.innerHTML = "Hallo "+data.find(x => x.user_id === userId).first_name+ "!";
+    element.innerHTML = "Hallo "+data.first_name+ "!";
     element.id = data.user_id;
     
     // append to container (in your case its page 1 or 2

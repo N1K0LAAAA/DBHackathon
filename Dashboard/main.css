@@ -1,5 +1,8 @@
 body{
     height: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 #main{
@@ -37,6 +40,7 @@ body{
     display: flex !important;
     flex-direction: row;
     align-items: center;
+    width: 50vw;
     
 }
 
@@ -59,7 +63,7 @@ body{
 }
 
 .negativ{
-    color:red;
+    color: #9e0017;;
     font-weight: bold;
     margin: 0;
     margin-right: 15%;
@@ -68,7 +72,7 @@ body{
 }
 
 .positiv{
-    color:green;
+    color: #006800;
     font-weight: bold;
     margin: 0;
     margin-right: 15%;
@@ -82,13 +86,20 @@ body{
     text-align: center;
 }
 
-#cM{
+.cM{
     margin: 0;
+    font-size: 80px;
+}
+
+.tt{
+    margin-top: 2vh;
+    font-size: 30px;
+    font-weight: bold;
 }
 
 #lW{
     font-size: 80px;
-    margin-left: 25%;
+    margin-left: 20%;
     font-weight: bold;
 }
 
@@ -97,4 +108,72 @@ body{
 #se{
     display: flex;
     flex-direction: row;
+    margin-left: 5vw;
+}
+
+#feet{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #ffcc00;
+    
+    color: rgb(6, 6, 80);
+    display: flex;
+    flex-direction: row;
+    height: 45px;
+    
+}
+
+#footer-list{
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    height: fit-content;
+    margin-top: 10px;
+}
+
+.footer-link{
+    text-decoration: none;
+    margin-bottom: 0;
+    margin-right: 5px;
+    margin-left: 5px;
+    height: fit-content;
+}
+
+.footer-link:hover{
+    opacity: 70%;
+}
+
+#copyr{
+    text-decoration: none;
+    margin-bottom: 0px;
+    margin-right: 5px;
+    margin-left: 50vw;
+    height: fit-content;
+    margin-top: 10px;
+}
+
+#container{
+    height: 50vh;
+    width: 50vw;
+}
+
+.card-body{
+    display: flex;
+    flex-direction: column;
+}
+
+.card-title{
+    position: relativ;
+    margin-left: 10vw;
+    font-size: 40px;
+}
+
+.card{
+    margin: 10px;
+}
+
+#deine-Transactionen{
+    margin: 5px;
 }
