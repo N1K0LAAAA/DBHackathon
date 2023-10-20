@@ -2,15 +2,12 @@
 let a = ["Lebensmittel", "Einkäufe", "Transport", "Versicherungen", "Freizeit", "Urlaub"];
 let b = ["Chips", "PC", "Ticket", "Krankenkasse", "Kiten", "Italien-Reise"]
 import { CountUp } from './countUp.js';
-const userId = 1
 
 function append(){
   let x = 0;
   fetch("http://alessio.ddnss.de/api/user-data/1").then(response => {
     response.json().then(data =>{
-      const key = Object.keys(data).find(user => data[user].user_id === '1');
-
-    for(let i=0;i<data[key].transactions.length;i++){
+    for(let i=0;i<data.transactions.length;i++){
 
     let f = Math.floor(Math.random()*6);
     let g = a[f];
@@ -53,14 +50,14 @@ function append(){
 
       var element = document.createElement("p");
       element.id = elementProto.pId;
-      if (data[key].transactions[i].from_Account == 1) {
-        element.innerHTML = '-'+ data[key].transactions[i].amount+'€';
+      if (data.transactions[i].from_Account == 1) {
+        element.innerHTML = '-'+data.transactions[i].amount+'€';
         element.className = 'negativ';
-        x = x-data[key].transactions[i].amount;
+        x = x-data.transactions[i].amount;
       } else {
-        element.innerHTML = '+'+data[key].transactions[i].amount+'€';
+        element.innerHTML = '+'+data.transactions[i].amount+'€';
         element.className = 'positiv';
-        x = x-data[key].transactions[i].amount;
+        x = x-data.transactions[i].amount;
       }
       // append to container (in your case its page 1 or 2)
       
