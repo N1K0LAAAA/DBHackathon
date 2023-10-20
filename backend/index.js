@@ -14,7 +14,7 @@ app.use("/", express.static(path));
 
 app.use("/api", api);
 
-app.listen(3001, () => {
+app.listen(3000, () => {
     console.log("running...");
 });
 
