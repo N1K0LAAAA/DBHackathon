@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Postbank",
   "version": "1.0",
-  "description": "My extension description",
+  "description": "Sehe ob eine Investition sinnvoll ist.",
   "host_permissions": [
     "https://alessio.ddnss.de/*",
     "https://amazon.de/*"

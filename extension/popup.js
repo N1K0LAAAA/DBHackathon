@@ -46,10 +46,20 @@ function login() {
     makeCORSRequest(`https://alessio.ddnss.de/api/login?email=${email}&password=${password}`, "POST").then(d => {
         if (d.success) {
             let data = JSON.parse(d.data);
-            chrome.storage.local.set({"userID": data.user_id});
-            initContentPage(data.user_id);
+            if (data.user_id) {
+                chrome.storage.local.set({"userID": data.user_id});
+                initContentPage(data.user_id);
+            } else {
+                let errLabel = document.getElementById("login-error-label");
+                errLabel.hidden = false;
+                errLabel.innerText = `Error: ${data.message}`;
+                setPage("login")
+            }
         } else {
-            alert("failed!")
+            let errLabel = document.getElementById("login-error-label");
+            errLabel.hidden = false;
+            errLabel.innerText = `Error: Netzwerkfehler`;
+            setPage("login");
         }
     })
 }
@@ -135,7 +145,22 @@ function initBucketUI(buckets, itemPrice) {
 
         (new CountUp("bucket-budget", budget)).start();
 
+        let percentageContainer = document.getElementById("bucket-percentage")
+        let percentageContainerEuro = document.getElementById("bucket-percentage-2")
+
+
         let percentage = Math.round(itemPrice / budget * 100);
+
+        if (percentage >= 40) {
+            percentageContainer.style.color = 'red';
+            percentageContainerEuro.style.color = 'red';
+        } else if (percentage >= 20) {
+            percentageContainer.style.color = 'orange';
+            percentageContainerEuro.style.color = 'orange';
+        } else {
+            percentageContainer.style.color = 'green';
+            percentageContainerEuro.style.color = 'green';
+        }
 
         (new CountUp("bucket-percentage", percentage)).start();
     }
