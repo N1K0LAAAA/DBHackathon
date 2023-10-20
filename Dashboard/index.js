@@ -5,7 +5,7 @@ import { CountUp } from './countUp.js';
 
 function append(){
   let x = 0;
-  fetch("http://alessio.ddnss.de/api/user-data/1").then(response => {
+  fetch("https://alessio.ddnss.de/api/user-data/1").then(response => {
     response.json().then(data =>{
     for(let i=0;i<data.transactions.length;i++){
 
@@ -60,7 +60,7 @@ function append(){
         x = x-data.transactions[i].amount;
       }
 
-      
+
       // append to container (in your case its page 1 or 2)
       
       document.getElementById(`${i}list-group-item`).append(element);

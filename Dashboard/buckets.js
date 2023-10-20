@@ -5,7 +5,7 @@ const userId = 1;
 function load(){
 
    
-   fetch("http://alessio.ddnss.de/api/user-data/1").then(response => {
+   fetch("https://alessio.ddnss.de/api/user-data/1").then(response => {
     response.json().then(data =>{
    
    

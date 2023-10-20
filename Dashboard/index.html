@@ -63,7 +63,7 @@
                 </div>
                 <script>
                   
-                  fetch("http://alessio.ddnss.de/api/user-data/1").then(response => {
+                  fetch("https://alessio.ddnss.de/api/user-data/1").then(response => {
                     response.json().then(data =>{
                       console.log(data.buckets.find(x => x.user_id === 1).living_expense)
           var pie = new ej.charts.AccumulationChart({
